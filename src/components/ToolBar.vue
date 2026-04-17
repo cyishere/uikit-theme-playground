@@ -1,13 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ThemeController from './ThemeController.vue';
+</script>
 
 <template>
   <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
     <header class="uk-navbar-container uk-padding uk-padding-remove-vertical" uk-navbar>
       <div class="uk-navbar-left">
         <button
+          type="button"
           class="uk-navbar-item uk-navbar-toggle tp-show-only-small"
           uk-navbar-toggle-icon
-          href=""
+          uk-toggle="target: #mobileMenu"
         ></button>
         <div class="uk-navbar-item tp-show-only-small">
           <a href="/" class="uk-logo">UKTP</a>
@@ -34,6 +37,13 @@
         </div>
       </div>
     </header>
+  </div>
+
+  <div id="mobileMenu" uk-offcanvas>
+    <div class="uk-offcanvas-bar">
+      <button class="uk-offcanvas-close" type="button" uk-close></button>
+      <ThemeController />
+    </div>
   </div>
 </template>
 
