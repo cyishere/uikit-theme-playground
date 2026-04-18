@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { ThemeVariable } from '@/utils/types';
-import { ref } from 'vue';
+import { ref, watch, onBeforeUnmount } from 'vue';
 import { toCamelCase } from '@/utils/formatter';
 import { defaultVariables } from '@/utils/variables';
+
+const compiling = defineModel<boolean>('compiling');
 
 const getInitialVariables = () => JSON.parse(JSON.stringify(defaultVariables));
 
@@ -17,10 +19,47 @@ const getRangeAttrs = (variable: ThemeVariable) => ({
   min: variable.id === '@global-line-height' ? 1 : 0,
   max: variable.id === '@global-line-height' ? 2 : 100
 });
+
+let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+onBeforeUnmount(() => {
+  if (debounceTimer) clearTimeout(debounceTimer);
+});
+
+const applyTheme = async () => {
+  if (!window.less) return;
+
+  // Set compiling to true immediately so the CSS [data-compiling="true"]
+  // dims the UI instantly while we wait for the debounce.
+  compiling.value = true;
+
+  if (debounceTimer) clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(async () => {
+    try {
+      const allVars = Object.values(themeVariables.value).flat() as ThemeVariable[];
+      const varsRecord = allVars.reduce(
+        (curr: Record<string, string>, v: ThemeVariable) => {
+          curr[v.id] = v.unit ? `${v.value}${v.unit}` : v.value;
+          return curr;
+        },
+        {} as Record<string, string>
+      );
+
+      await window.less.modifyVars(varsRecord);
+    } catch (error) {
+      console.error('Failed to apply theme:', error);
+    } finally {
+      compiling.value = false;
+    }
+  }, 200); // Reduced to 200ms for snappier performance
+};
+
+watch(themeVariables, () => applyTheme(), { deep: true, immediate: true });
 </script>
 
 <template>
-  <div class="uk-padding-large uk-padding-remove-horizontal uk-padding-remove-bottom">
+  <div>
     <div
       class="uk-margin-large-bottom"
       v-for="(variables, category) in themeVariables"

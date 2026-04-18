@@ -4,14 +4,14 @@ import PreviewCanvas from './components/PreviewCanvas.vue';
 import Sidebar from './components/SideBar.vue';
 import Toolbar from './components/ToolBar.vue';
 
-const compiling = ref(false);
+const compiling = ref(true);
 </script>
 
 <template>
-  <div class="tp-wrapper">
-    <Sidebar />
+  <div class="tp-wrapper" :data-compiling="compiling">
+    <Sidebar v-model:compiling="compiling" />
     <main class="tp-main">
-      <Toolbar :compiling="compiling" />
+      <Toolbar v-model:compiling="compiling" />
       <PreviewCanvas />
     </main>
   </div>

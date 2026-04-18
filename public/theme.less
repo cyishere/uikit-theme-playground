@@ -8,3 +8,12 @@
 
 @offcanvas-bar-background: #fff;
 @offcanvas-bar-color-mode: dark;
+
+.tp-wrapper[data-compiling='true'] {
+	opacity: 0.5;
+
+	input,
+	select {
+		pointer-events: none;
+	}
+}

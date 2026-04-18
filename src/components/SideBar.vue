@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import ThemeController from './ThemeController.vue';
 
 const sidebarExpanded = ref(true);
+const compiling = defineModel<boolean>('compiling');
 
 const toggleSidebar = () => {
   sidebarExpanded.value = !sidebarExpanded.value;
@@ -22,8 +23,8 @@ const toggleSidebar = () => {
 
     <h2 hidden>Theme Controller</h2>
 
-    <div class="uk-padding uk-padding-remove-top tp-controller-wrapper">
-      <ThemeController />
+    <div class="uk-padding tp-controller-wrapper">
+      <ThemeController v-model:compiling="compiling" />
     </div>
   </div>
 </template>
@@ -77,7 +78,11 @@ const toggleSidebar = () => {
   --sidebar-top-height: 60px;
 
   margin-top: var(--sidebar-top-height);
-  height: calc(100vh - var(--sidebar-top-height) - 30px);
+
+  /** `60px` is the value of `.uk-padding` multiple by 2.
+   *  Because there are top and bottom padding. 
+   */
+  height: calc(100vh - var(--sidebar-top-height) - 60px);
   overflow-y: auto;
 }
 </style>

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import ThemeController from './ThemeController.vue';
 
-const { compiling } = defineProps<{
-  compiling: boolean;
-}>();
+const compiling = defineModel<boolean>('compiling');
 </script>
 
 <template>
@@ -49,7 +47,9 @@ const { compiling } = defineProps<{
   <div id="mobileMenu" uk-offcanvas>
     <div class="uk-offcanvas-bar">
       <button class="uk-offcanvas-close" type="button" uk-close></button>
-      <ThemeController />
+      <div class="uk-padding-large uk-padding-remove-horizontal">
+        <ThemeController v-model:compiling="compiling" />
+      </div>
     </div>
   </div>
 </template>
