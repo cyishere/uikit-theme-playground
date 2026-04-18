@@ -73,11 +73,7 @@ Displays UIkit components updating in real time.
 
 Handles variable updates and applies styles.
 
-### MVP Approach
-
-- Use CSS variables for instant updates
-
-### Future (Optional)
+### Future
 
 - Compile Less using `less.js`
 
@@ -154,7 +150,7 @@ Project is successful if:
 - Code is clean and structured
 - README explains architecture decisions
 
-# 10. Key Engineering Signals (what reviewers should see)
+# 10. Key Engineering Signals
 
 - Understanding of **design systems**
 - Ability to integrate **external UI frameworks (UIkit)**
