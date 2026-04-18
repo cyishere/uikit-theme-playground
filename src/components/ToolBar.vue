@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import ThemeController from './ThemeController.vue';
+
+const { compiling } = defineProps<{
+  compiling: boolean;
+}>();
 </script>
 
 <template>
@@ -18,7 +22,10 @@ import ThemeController from './ThemeController.vue';
         <div class="uk-navbar-item tp-hidden-small">
           <a href="/" class="uk-logo">UIkit Theme Playgroud</a>
         </div>
-        <div class="uk-navbar-item">
+        <div v-if="compiling" class="uk-navbar-item">
+          <span class="uk-text-danger uk-text-italic">Compiling...</span>
+        </div>
+        <div v-else class="uk-navbar-item">
           <span class="uk-text-success">●</span>
           <span>Synced</span>
         </div>
