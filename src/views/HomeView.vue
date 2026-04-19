@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import PreviewCanvas from './components/PreviewCanvas.vue';
-import Sidebar from './components/SideBar.vue';
-import Toolbar from './components/ToolBar.vue';
-import ThemeController from './components/ThemeController.vue';
+import PreviewCanvas from '../components/PreviewCanvas.vue';
+import Sidebar from '../components/SideBar.vue';
+import Toolbar from '../components/ToolBar.vue';
+import ThemeController from '../components/ThemeController.vue';
 
 const compiling = ref(false);
 </script>
