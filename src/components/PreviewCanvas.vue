@@ -5,7 +5,7 @@ import PagePreview from './PagePreview.vue';
 
 <template>
   <div>
-    <ul class="uk-padding uk-flex-center" uk-tab>
+    <ul class="uk-flex-center uk-padding uk-padding-remove-bottom" uk-tab>
       <li><a href="#">Components</a></li>
       <li class="uk-active"><a href="#">Demo Page</a></li>
     </ul>
