@@ -5,17 +5,17 @@ import Logo from './PageLogo.vue';
 <template>
   <nav class="tp-navbar uk-padding uk-padding-remove-top uk-padding-remove-bottom" uk-navbar>
     <div class="uk-navbar-left">
-      <a class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon href=""></a>
-      <div class="uk-navbar-item tp-hidden_s">
+      <button class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon></button>
+      <div class="uk-navbar-item tp-hidden_m">
         <Logo />
       </div>
     </div>
 
     <div class="uk-navbar-center">
-      <div class="uk-navbar-item uk-hidden@s">
+      <div class="uk-navbar-item uk-hidden@m">
         <Logo />
       </div>
-      <ul class="uk-navbar-nav tp-hidden_s">
+      <ul class="uk-navbar-nav tp-hidden_m">
         <li>
           <a href="#">Why DevStack?</a>
         </li>
@@ -33,12 +33,20 @@ import Logo from './PageLogo.vue';
     </div>
 
     <div class="uk-navbar-right">
-      <div class="uk-navbar-item tp-hidden_s">
+      <div class="uk-navbar-item tp-hidden_m">
         <a href="#">Login</a>
       </div>
-      <div class="uk-navbar-item tp-hidden_s">
+      <div class="uk-navbar-item tp-hidden_m">
         <a class="uk-button uk-button-primary" href="#">Register</a>
       </div>
     </div>
   </nav>
 </template>
+
+<style scoped>
+@media (max-width: 960px) {
+  .tp-hidden_m {
+    display: none;
+  }
+}
+</style>
