@@ -9,27 +9,27 @@ const compiling = ref(false);
 </script>
 
 <template>
-	<div class="tp-wrapper" :data-compiling="compiling">
-		<Sidebar>
-			<ThemeController v-model:compiling="compiling" />
-		</Sidebar>
-		<main class="tp-main">
-			<Toolbar v-model:compiling="compiling">
-				<ThemeController v-model:compiling="compiling" />
-			</Toolbar>
-			<PreviewCanvas />
-		</main>
-	</div>
+  <div class="tp-wrapper" :data-compiling="compiling">
+    <Sidebar>
+      <ThemeController v-model:compiling="compiling" />
+    </Sidebar>
+    <main class="tp-main">
+      <Toolbar v-model:compiling="compiling">
+        <ThemeController v-model:compiling="compiling" />
+      </Toolbar>
+      <PreviewCanvas />
+    </main>
+  </div>
 </template>
 
 <style scoped>
 .tp-wrapper {
-	display: flex;
-	justify-content: flex-start;
-	align-items: stretch;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
 }
 
 .tp-main {
-	flex: 1;
+  flex: 1;
 }
 </style>

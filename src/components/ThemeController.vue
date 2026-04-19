@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import type { ThemeVariable } from '@/utils/types';
+import type { ThemeVariable, ThemeVariablesCollection } from '@/utils/types';
 import { ref, watch, onBeforeUnmount } from 'vue';
 import { toCamelCase } from '@/utils/formatter';
 import { defaultVariables } from '@/utils/variables';
+import { downloadFile, generateLessTheme } from '@/utils/export';
 
 const compiling = defineModel<boolean>('compiling', { required: true });
 
 const getInitialVariables = () => JSON.parse(JSON.stringify(defaultVariables));
 
-const themeVariables = ref(getInitialVariables());
+const themeVariablesCollection = ref<ThemeVariablesCollection>(getInitialVariables());
 
 const resetTheme = () => {
-  themeVariables.value = getInitialVariables();
+  themeVariablesCollection.value = getInitialVariables();
 };
 
 const getRangeAttrs = (variable: ThemeVariable) => ({
@@ -37,9 +38,9 @@ const applyTheme = async () => {
 
   debounceTimer = setTimeout(async () => {
     try {
-      const allVars = Object.values(themeVariables.value).flat() as ThemeVariable[];
+      const allVars = Object.values(themeVariablesCollection.value).flat();
       const varsRecord = allVars.reduce(
-        (curr: Record<string, string>, v: ThemeVariable) => {
+        (curr, v) => {
           curr[v.id] = v.unit ? `${v.value}${v.unit}` : v.value;
           return curr;
         },
@@ -55,14 +56,19 @@ const applyTheme = async () => {
   }, 200); // Reduced to 200ms for snappier performance
 };
 
-watch(themeVariables, () => applyTheme(), { deep: true, immediate: true });
+const handleExport = () => {
+  const lessContent = generateLessTheme(themeVariablesCollection.value);
+  downloadFile('uikit-custom-theme.less', lessContent);
+};
+
+watch(themeVariablesCollection, () => applyTheme(), { deep: true, immediate: true });
 </script>
 
 <template>
   <div>
     <div
       class="uk-margin-large-bottom"
-      v-for="(variables, category) in themeVariables"
+      v-for="(variables, category) in themeVariablesCollection"
       :key="category"
     >
       <h3 class="uk-text-uppercase uk-text-muted uk-heading-divider">{{ category }}</h3>
@@ -101,6 +107,14 @@ watch(themeVariables, () => applyTheme(), { deep: true, immediate: true });
         </div>
       </div>
     </div>
+
+    <button
+      type="button"
+      class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
+      @click="handleExport"
+    >
+      Download
+    </button>
 
     <button type="button" class="uk-button uk-button-default uk-width-1-1" @click="resetTheme">
       Reset

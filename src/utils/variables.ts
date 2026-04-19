@@ -1,7 +1,6 @@
-import type { ThemeVarCategory, ThemeVariable } from './types';
+import type { ThemeVariablesCollection } from './types';
 
-export const defaultVariables: Record<ThemeVarCategory, ThemeVariable[]> = {
-  // 10
+export const defaultVariables: ThemeVariablesCollection = {
   Colors: [
     {
       id: '@global-primary-background',
@@ -64,7 +63,6 @@ export const defaultVariables: Record<ThemeVarCategory, ThemeVariable[]> = {
       value: '#ffffff'
     }
   ],
-  // 5
   Typography: [
     {
       id: '@global-font-family',
@@ -100,7 +98,6 @@ export const defaultVariables: Record<ThemeVarCategory, ThemeVariable[]> = {
       value: '#999999'
     }
   ],
-  // 3
   Borders: [
     {
       id: '@global-border-radius',

@@ -1,4 +1,4 @@
-export type ThemeVarCategory = 'Colors' | 'Typography' | 'Borders';
+type ThemeVarCategory = 'Colors' | 'Typography' | 'Borders';
 
 export type ThemeVariable = {
   id: string;
@@ -8,3 +8,5 @@ export type ThemeVariable = {
   unit?: string;
   step?: number;
 };
+
+export type ThemeVariablesCollection = Record<ThemeVarCategory, ThemeVariable[]>;
