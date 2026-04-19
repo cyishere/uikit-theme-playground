@@ -23,10 +23,14 @@ export const themeState = reactive({
   compiling: false
 });
 
+let isSyncing = false;
+
 // Persist theme changes to localStorage
 watch(
   () => themeState.variablesCollection,
   (newVars) => {
+    if (isSyncing) return;
+
     localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(newVars));
   },
   { deep: true }
@@ -37,10 +41,23 @@ if (typeof window !== 'undefined') {
   window.addEventListener('storage', (event) => {
     if (event.key === THEME_STORAGE_KEY && event.newValue) {
       try {
-        themeState.variablesCollection = JSON.parse(event.newValue);
+        // Only update if the values are actually different
+        if (event.newValue === JSON.stringify(themeState.variablesCollection)) {
+          return;
+        }
+
+        isSyncing = true;
+        const incoming = JSON.parse(event.newValue);
+        themeState.variablesCollection = incoming;
         applyTheme(true);
+
+        // Reset the flag after the current execution context and potential watcher triggers
+        setTimeout(() => {
+          isSyncing = false;
+        }, 0);
       } catch (error) {
         console.error('Failed to sync theme from storage:', error);
+        isSyncing = false;
       }
     }
   });
