@@ -9,7 +9,7 @@ const toggleSidebar = () => {
 </script>
 
 <template>
-  <div class="uk-background-muted tp-sidebar" :data-expanded="sidebarExpanded">
+  <aside class="uk-background-muted tp-sidebar" :data-expanded="sidebarExpanded">
     <div class="uk-background-primary uk-light uk-flex uk-flex-right tp-sidebar-top">
       <button
         type="button"
@@ -24,7 +24,7 @@ const toggleSidebar = () => {
     <div class="uk-padding tp-controller-wrapper">
       <slot />
     </div>
-  </div>
+  </aside>
 </template>
 
 <style scoped>

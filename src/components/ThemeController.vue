@@ -65,7 +65,7 @@ watch(themeVariables, () => applyTheme(), { deep: true, immediate: true });
       v-for="(variables, category) in themeVariables"
       :key="category"
     >
-      <h5 class="uk-text-uppercase uk-text-muted uk-heading-divider">{{ category }}</h5>
+      <h3 class="uk-text-uppercase uk-text-muted uk-heading-divider">{{ category }}</h3>
       <div class="uk-form-stacked">
         <div v-for="variable in variables" :key="variable.id" class="uk-margin-bottom">
           <div class="uk-flex uk-flex-between uk-flex-middle">
