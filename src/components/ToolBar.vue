@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const compiling = defineModel<boolean>('compiling', { required: true });
+import { themeState } from '@/utils/theme-state';
 </script>
 
 <template>
@@ -18,7 +18,7 @@ const compiling = defineModel<boolean>('compiling', { required: true });
         <div class="uk-navbar-item tp-hidden-small">
           <a href="/" class="uk-logo">UIkit Theme Playgroud</a>
         </div>
-        <div v-if="compiling" class="uk-navbar-item">
+        <div v-if="themeState.compiling" class="uk-navbar-item">
           <span class="uk-text-danger uk-text-italic">Compiling...</span>
         </div>
         <div v-else class="uk-navbar-item">

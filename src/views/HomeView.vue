@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import PreviewCanvas from '../components/PreviewCanvas.vue';
-import Sidebar from '../components/SideBar.vue';
-import Toolbar from '../components/ToolBar.vue';
-import ThemeController from '../components/ThemeController.vue';
-
-const compiling = ref(false);
+import PreviewCanvas from '@/components/PreviewCanvas.vue';
+import Sidebar from '@/components/SideBar.vue';
+import Toolbar from '@/components/ToolBar.vue';
+import ThemeController from '@/components/ThemeController.vue';
+import { themeState } from '@/utils/theme-state';
 </script>
 
 <template>
-  <div class="tp-wrapper" :data-compiling="compiling">
+  <div class="tp-wrapper" :data-compiling="themeState.compiling">
     <Sidebar>
-      <ThemeController v-model:compiling="compiling" />
+      <ThemeController />
     </Sidebar>
     <main class="tp-main">
-      <Toolbar v-model:compiling="compiling">
-        <ThemeController v-model:compiling="compiling" />
+      <Toolbar>
+        <ThemeController />
       </Toolbar>
       <PreviewCanvas />
     </main>

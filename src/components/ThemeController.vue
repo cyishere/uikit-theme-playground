@@ -1,19 +1,9 @@
 <script setup lang="ts">
-import type { ThemeVariable, ThemeVariablesCollection } from '@/utils/types';
-import { ref, watch, onBeforeUnmount } from 'vue';
+import type { ThemeVariable } from '@/utils/types';
+import { watch } from 'vue';
 import { toCamelCase } from '@/utils/formatter';
-import { defaultVariables } from '@/utils/variables';
 import { downloadFile, generateLessTheme } from '@/utils/export';
-
-const compiling = defineModel<boolean>('compiling', { required: true });
-
-const getInitialVariables = () => JSON.parse(JSON.stringify(defaultVariables));
-
-const themeVariablesCollection = ref<ThemeVariablesCollection>(getInitialVariables());
-
-const resetTheme = () => {
-  themeVariablesCollection.value = getInitialVariables();
-};
+import { applyTheme, resetTheme, themeState } from '@/utils/theme-state';
 
 const getRangeAttrs = (variable: ThemeVariable) => ({
   step: variable.step ?? 1,
@@ -21,54 +11,23 @@ const getRangeAttrs = (variable: ThemeVariable) => ({
   max: variable.id === '@global-line-height' ? 2 : 100
 });
 
-let debounceTimer: ReturnType<typeof setTimeout> | null = null;
-
-onBeforeUnmount(() => {
-  if (debounceTimer) clearTimeout(debounceTimer);
-});
-
-const applyTheme = async () => {
-  if (!window.less) return;
-
-  // Set compiling to true immediately so the CSS [data-compiling="true"]
-  // dims the UI instantly while we wait for the debounce.
-  compiling.value = true;
-
-  if (debounceTimer) clearTimeout(debounceTimer);
-
-  debounceTimer = setTimeout(async () => {
-    try {
-      const allVars = Object.values(themeVariablesCollection.value).flat();
-      const varsRecord = allVars.reduce(
-        (curr, v) => {
-          curr[v.id] = v.unit ? `${v.value}${v.unit}` : v.value;
-          return curr;
-        },
-        {} as Record<string, string>
-      );
-
-      await window.less.modifyVars(varsRecord);
-    } catch (error) {
-      console.error('Failed to apply theme:', error);
-    } finally {
-      compiling.value = false;
-    }
-  }, 200); // Reduced to 200ms for snappier performance
-};
-
 const handleExport = () => {
-  const lessContent = generateLessTheme(themeVariablesCollection.value);
+  const lessContent = generateLessTheme(themeState.variablesCollection);
   downloadFile('uikit-custom-theme.less', lessContent);
 };
 
-watch(themeVariablesCollection, () => applyTheme(), { deep: true, immediate: true });
+watch(
+  () => themeState.variablesCollection,
+  () => applyTheme(),
+  { deep: true, immediate: true }
+);
 </script>
 
 <template>
   <div>
     <div
       class="uk-margin-large-bottom"
-      v-for="(variables, category) in themeVariablesCollection"
+      v-for="(variables, category) in themeState.variablesCollection"
       :key="category"
     >
       <h3 class="uk-text-uppercase uk-text-muted uk-heading-divider">{{ category }}</h3>
@@ -113,11 +72,13 @@ watch(themeVariablesCollection, () => applyTheme(), { deep: true, immediate: tru
       class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
       @click="handleExport"
     >
+      <span uk-icon="download" class="uk-margin-small-right"></span>
       Download
     </button>
 
-    <button type="button" class="uk-button uk-button-default uk-width-1-1" @click="resetTheme">
-      Reset
+    <button type="button" class="uk-button uk-button-danger uk-width-1-1" @click="resetTheme">
+      <span uk-icon="trash" class="uk-margin-small-right"></span>
+      Clear Workspace
     </button>
   </div>
 </template>
