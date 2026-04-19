@@ -18,6 +18,11 @@ export default defineConfigWithVueTs(
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', 'public/less.js']),
 
   ...pluginVue.configs['flat/essential'],
+  {
+    rules: {
+      'vue/no-undef-components': 'error'
+    }
+  },
   vueTsConfigs.recommended,
 
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),

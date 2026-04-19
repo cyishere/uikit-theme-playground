@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import ThemeController from './ThemeController.vue';
-
-const compiling = defineModel<boolean>('compiling');
+const compiling = defineModel<boolean>('compiling', { required: true });
 </script>
 
 <template>
@@ -48,7 +46,7 @@ const compiling = defineModel<boolean>('compiling');
     <div class="uk-offcanvas-bar">
       <button class="uk-offcanvas-close" type="button" uk-close></button>
       <div class="uk-padding-large uk-padding-remove-horizontal">
-        <ThemeController v-model:compiling="compiling" />
+        <slot />
       </div>
     </div>
   </div>

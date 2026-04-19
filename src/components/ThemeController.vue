@@ -4,7 +4,7 @@ import { ref, watch, onBeforeUnmount } from 'vue';
 import { toCamelCase } from '@/utils/formatter';
 import { defaultVariables } from '@/utils/variables';
 
-const compiling = defineModel<boolean>('compiling');
+const compiling = defineModel<boolean>('compiling', { required: true });
 
 const getInitialVariables = () => JSON.parse(JSON.stringify(defaultVariables));
 

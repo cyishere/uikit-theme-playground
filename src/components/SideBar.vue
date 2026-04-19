@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import ThemeController from './ThemeController.vue';
 
 const sidebarExpanded = ref(true);
-const compiling = defineModel<boolean>('compiling');
 
 const toggleSidebar = () => {
   sidebarExpanded.value = !sidebarExpanded.value;
@@ -24,7 +22,7 @@ const toggleSidebar = () => {
     <h2 hidden>Theme Controller</h2>
 
     <div class="uk-padding tp-controller-wrapper">
-      <ThemeController v-model:compiling="compiling" />
+      <slot />
     </div>
   </div>
 </template>
