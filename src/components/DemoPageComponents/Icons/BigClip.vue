@@ -6,7 +6,7 @@
     height="280"
     viewBox="0 0 500 500"
     xmlns="http://www.w3.org/2000/svg"
-    class="uk-text-emphasis el-image uk-svg"
+    class="uk-text-emphasis uk-svg"
   >
     <path
       class="uk-preserve"
