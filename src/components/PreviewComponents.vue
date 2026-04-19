@@ -3,7 +3,7 @@ import DemoSection, { H3 } from './DemoSection.vue';
 </script>
 
 <template>
-  <div>
+  <div class="uk-padding uk-padding-remove-top">
     <h1 class="uk-margin-large-top">Theme Preview</h1>
     <p class="uk-text-lead uk-text-muted">
       Explore how your custom UIkit theme looks across various components.
