@@ -6,6 +6,15 @@ import { downloadFile, generateLessTheme } from '@/utils/export';
 import { applyTheme, resetTheme, themeState } from '@/utils/theme-state';
 import { FONT_FAMILIES } from '@/utils/variables';
 
+const { idPrefix } = defineProps<{
+  idPrefix: string;
+}>();
+
+const getUniqueId = (id: string) => {
+  const camelId = toCamelCase(id);
+  return idPrefix ? `${idPrefix}-${camelId}` : camelId;
+};
+
 const getRangeAttrs = (variable: ThemeVariable) => ({
   step: variable.step ?? 1,
   min: variable.id === '@global-line-height' ? 1 : 0,
@@ -35,7 +44,7 @@ watch(
       <div class="uk-form-stacked">
         <div v-for="variable in variables" :key="variable.id" class="uk-margin-bottom">
           <div class="uk-flex uk-flex-between uk-flex-middle">
-            <label class="uk-form-label" :for="toCamelCase(variable.id)">{{ variable.id }}</label>
+            <label class="uk-form-label" :for="getUniqueId(variable.id)">{{ variable.id }}</label>
             <span v-if="variable.type === 'number'" class="uk-text-success">
               {{ variable.value }}{{ variable.unit }}
             </span>
@@ -44,7 +53,7 @@ watch(
           <div v-if="variable.id === '@global-font-family'" class="uk-form-controls">
             <select
               class="uk-select"
-              :id="toCamelCase(variable.id)"
+              :id="getUniqueId(variable.id)"
               aria-label="Select Font"
               v-model="variable.value"
             >
@@ -53,7 +62,12 @@ watch(
           </div>
 
           <div v-if="variable.id === '@base-heading-font-family'" class="uk-form-controls">
-            <select class="uk-select" aria-label="Select Font" v-model="variable.value">
+            <select
+              class="uk-select"
+              :id="getUniqueId(variable.id)"
+              aria-label="Select Font"
+              v-model="variable.value"
+            >
               <option v-for="ff in FONT_FAMILIES.heading" :key="ff" :value="ff">{{ ff }}</option>
             </select>
           </div>
@@ -72,7 +86,7 @@ watch(
               type="range"
               class="uk-range uk-margin-top"
               :name="variable.id.slice(1)"
-              :id="toCamelCase(variable.id)"
+              :id="getUniqueId(variable.id)"
               v-bind="getRangeAttrs(variable)"
               v-model="variable.value"
             />
@@ -81,7 +95,7 @@ watch(
               v-if="variable.type !== 'number' && !variable.id.includes('font-family')"
               type="text"
               :name="variable.id.slice(1)"
-              :id="toCamelCase(variable.id)"
+              :id="getUniqueId(variable.id)"
               class="uk-input"
               v-model="variable.value"
             />

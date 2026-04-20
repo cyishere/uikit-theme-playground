@@ -9,11 +9,11 @@ import { themeState } from '@/utils/theme-state';
 <template>
   <div class="tp-wrapper" :data-compiling="themeState.compiling">
     <Sidebar>
-      <ThemeController />
+      <ThemeController id-prefix="sidebar" />
     </Sidebar>
     <main class="tp-main">
       <Toolbar>
-        <ThemeController />
+        <ThemeController id-prefix="toolbar" />
       </Toolbar>
       <PreviewCanvas />
     </main>
