@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { toCapitalized } from '@/utils/formatter';
-import { applyTheme, resetTheme, themeState } from '@/utils/theme-state';
+import { applyTheme, resetTheme, themeState, updateThemeFromPreset } from '@/utils/theme-state';
 import { PRESET_THEME_NAMES, toCollectionStructure } from '@/utils/variables';
 
 const handleChangeTheme = (e: Event) => {
@@ -11,7 +11,7 @@ const handleChangeTheme = (e: Event) => {
     resetTheme();
   } else {
     const collection = toCollectionStructure(themeName);
-    themeState.variablesCollection = structuredClone(collection);
+    updateThemeFromPreset(themeName, collection);
     applyTheme(true);
   }
 };
@@ -47,9 +47,12 @@ const handleChangeTheme = (e: Event) => {
           <span>Try Theme:</span>
         </div>
         <div class="uk-navbar-item">
-          <select class="uk-select" @change="handleChangeTheme">
+          <select class="uk-select" :value="themeState.selectedTheme" @change="handleChangeTheme">
             <option v-for="name in PRESET_THEME_NAMES" :key="name" :value="name">
               {{ toCapitalized(name) }}
+            </option>
+            <option v-if="themeState.selectedTheme === 'custom'" value="custom" disabled>
+              Customized
             </option>
           </select>
         </div>

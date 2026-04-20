@@ -3,6 +3,7 @@ import type { ThemeVariablesCollection } from './types';
 import { defaultVariables } from './variables';
 
 const THEME_STORAGE_KEY = 'uikit-playground-theme';
+const SELECTED_THEME_KEY = 'uikit-playground-selected-theme';
 
 const getInitialVariablesCollection = (): ThemeVariablesCollection => {
   const stored = localStorage.getItem(THEME_STORAGE_KEY);
@@ -20,10 +21,12 @@ const getInitialVariablesCollection = (): ThemeVariablesCollection => {
 
 export const themeState = reactive({
   variablesCollection: getInitialVariablesCollection(),
+  selectedTheme: (localStorage.getItem(SELECTED_THEME_KEY) || 'default') as string,
   compiling: false
 });
 
 let isSyncing = false;
+let isApplyingPreset = false;
 
 // Persist theme changes to localStorage
 watch(
@@ -32,9 +35,29 @@ watch(
     if (isSyncing) return;
 
     localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(newVars));
+
+    if (!isApplyingPreset) {
+      themeState.selectedTheme = 'custom';
+      localStorage.setItem(SELECTED_THEME_KEY, 'custom');
+    }
   },
   { deep: true }
 );
+
+/**
+ * Updates the theme collection from a preset and manages the selection state.
+ */
+export const updateThemeFromPreset = (themeName: string, collection: ThemeVariablesCollection) => {
+  isApplyingPreset = true;
+  themeState.variablesCollection = structuredClone(collection);
+  themeState.selectedTheme = themeName;
+  localStorage.setItem(SELECTED_THEME_KEY, themeName);
+
+  // Reset the flag in the next tick to ensure the watcher doesn't trigger 'custom'
+  setTimeout(() => {
+    isApplyingPreset = false;
+  }, 0);
+};
 
 // Listen for changes from other tabs
 if (typeof window !== 'undefined') {
@@ -88,9 +111,9 @@ export const applyTheme = async (force = false) => {
         themeState.compiling = true;
         const allVars = Object.values(themeState.variablesCollection).flat();
         const varsRecord = allVars.reduce(
-          (curr, v) => {
-            curr[v.id] = v.unit ? `${v.value}${v.unit}` : v.value.toString();
-            return curr;
+          (state, v) => {
+            state[v.id] = v.unit ? `${v.value}${v.unit}` : v.value.toString();
+            return state;
           },
           {} as Record<string, string>
         );
@@ -108,6 +131,8 @@ export const applyTheme = async (force = false) => {
 
 export const resetTheme = () => {
   localStorage.removeItem(THEME_STORAGE_KEY);
-  themeState.variablesCollection = structuredClone(defaultVariables);
+  localStorage.removeItem(SELECTED_THEME_KEY);
+
+  updateThemeFromPreset('default', defaultVariables);
   applyTheme(true);
 };
