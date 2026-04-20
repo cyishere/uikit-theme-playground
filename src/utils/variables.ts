@@ -167,120 +167,92 @@ export const PRESET_THEME_NAMES = ['default', 'elegant', 'playful', 'bold'] as c
 
 export const presetThemeVariables: Record<
   Exclude<(typeof PRESET_THEME_NAMES)[number], 'default'>,
-  Record<ThemeVarCategory, Record<string, ThemeVarValue>>
+  Record<string, ThemeVarValue>
 > = {
   elegant: {
-    Colors: {
-      '@global-primary-background': '#b5622a',
-      '@global-secondary-background': '#1a1814',
-      '@global-success-background': '#2eb282',
-      '@global-warning-background': '#e58c48',
-      '@global-danger-background': '#ee3a5b',
-      '@global-muted-background': '#f0ede6',
-      '@global-background': '#f8f6f1',
-      '@global-link-color': '#b5622a',
-      '@global-emphasis-color': '#1a1814',
-      '@global-inverse-color': '#ffffff'
-    },
-    Typography: {
-      '@global-font-family': FONT_FAMILIES.global[1]!,
-      '@base-heading-font-family': FONT_FAMILIES.heading[1]!,
-      '@global-font-size': '16',
-      '@global-line-height': '1.5',
-      '@global-color': '#4a4740',
-      '@global-muted-color': '#8c8880'
-    },
-    Borders: {
-      '@button-border-radius': 0,
-      '@input-border-radius': 0,
-      '@card-border-radius': 0,
-      '@label-border-radius': 0,
-      '@global-border-width': 1,
-      '@global-border': '#e8e4dc'
-    }
+    '@global-primary-background': '#b5622a',
+    '@global-secondary-background': '#1a1814',
+    '@global-success-background': '#2eb282',
+    '@global-warning-background': '#e58c48',
+    '@global-danger-background': '#ee3a5b',
+    '@global-muted-background': '#f0ede6',
+    '@global-background': '#f8f6f1',
+    '@global-link-color': '#b5622a',
+    '@global-emphasis-color': '#1a1814',
+    '@global-inverse-color': '#ffffff',
+    '@global-font-family': FONT_FAMILIES.global[1]!,
+    '@base-heading-font-family': FONT_FAMILIES.heading[1]!,
+    '@global-font-size': 16,
+    '@global-line-height': 1.5,
+    '@global-color': '#4a4740',
+    '@global-muted-color': '#8c8880',
+    '@button-border-radius': 0,
+    '@input-border-radius': 0,
+    '@card-border-radius': 0,
+    '@label-border-radius': 0,
+    '@global-border-width': 1,
+    '@global-border': '#e8e4dc'
   },
   playful: {
-    Colors: {
-      '@global-primary-background': '#7165c8',
-      '@global-secondary-background': '#f589a8',
-      '@global-success-background': '#43c796',
-      '@global-warning-background': '#f3ba12',
-      '@global-danger-background': '#f83f73',
-      '@global-muted-background': '#ffffff',
-      '@global-background': '#fdf8f3',
-      '@global-link-color': '#f589a8',
-      '@global-emphasis-color': '#333333',
-      '@global-inverse-color': '#ffffff'
-    },
-    Typography: {
-      '@global-font-family': FONT_FAMILIES.global[2]!,
-      '@base-heading-font-family': FONT_FAMILIES.heading[2]!,
-      '@global-font-size': 18,
-      '@global-line-height': 1.65,
-      '@global-color': '#2a2520',
-      '@global-muted-color': '#b0aaa6'
-    },
-    Borders: {
-      '@button-border-radius': 100,
-      '@input-border-radius': 12,
-      '@card-border-radius': 40,
-      '@label-border-radius': 0,
-      '@global-border-width': 3,
-      '@global-border': '#ede7e0'
-    }
+    '@global-primary-background': '#7165c8',
+    '@global-secondary-background': '#f589a8',
+    '@global-success-background': '#43c796',
+    '@global-warning-background': '#f3ba12',
+    '@global-danger-background': '#f83f73',
+    '@global-muted-background': '#ffffff',
+    '@global-background': '#fdf8f3',
+    '@global-link-color': '#f589a8',
+    '@global-emphasis-color': '#333333',
+    '@global-inverse-color': '#ffffff',
+    '@global-font-family': FONT_FAMILIES.global[2]!,
+    '@base-heading-font-family': FONT_FAMILIES.heading[2]!,
+    '@global-font-size': 18,
+    '@global-line-height': 1.65,
+    '@global-color': '#2a2520',
+    '@global-muted-color': '#b0aaa6',
+    '@button-border-radius': 100,
+    '@input-border-radius': 12,
+    '@card-border-radius': 40,
+    '@label-border-radius': 0,
+    '@global-border-width': 3,
+    '@global-border': '#ede7e0'
   },
   bold: {
-    Colors: {
-      '@global-primary-background': '#1a5cff',
-      '@global-secondary-background': '#3a3a3a',
-      '@global-success-background': '#00c9a7',
-      '@global-warning-background': '#ff941a',
-      '@global-danger-background': '#ff2d78',
-      '@global-muted-background': '#ffffff',
-      '@global-background': '#f5f5f0',
-      '@global-link-color': '#1e87f0',
-      '@global-emphasis-color': '#333333',
-      '@global-inverse-color': '#ffffff'
-    },
-    Typography: {
-      '@global-font-family': FONT_FAMILIES.global[3]!,
-      '@base-heading-font-family': FONT_FAMILIES.heading[3]!,
-      '@global-font-size': 18,
-      '@global-line-height': 1.5,
-      '@global-color': '#0d0d0d',
-      '@global-muted-color': '#999999'
-    },
-    Borders: {
-      '@button-border-radius': 0,
-      '@input-border-radius': 0,
-      '@card-border-radius': 0,
-      '@label-border-radius': 0,
-      '@global-border-width': 1,
-      '@global-border': '#0d0d0d'
-    }
+    '@global-primary-background': '#1a5cff',
+    '@global-secondary-background': '#3a3a3a',
+    '@global-success-background': '#00c9a7',
+    '@global-warning-background': '#ff941a',
+    '@global-danger-background': '#ff2d78',
+    '@global-muted-background': '#ffffff',
+    '@global-background': '#f5f5f0',
+    '@global-link-color': '#1e87f0',
+    '@global-emphasis-color': '#333333',
+    '@global-inverse-color': '#ffffff',
+    '@global-font-family': FONT_FAMILIES.global[3]!,
+    '@base-heading-font-family': FONT_FAMILIES.heading[3]!,
+    '@global-font-size': 18,
+    '@global-line-height': 1.5,
+    '@global-color': '#0d0d0d',
+    '@global-muted-color': '#999999',
+    '@button-border-radius': 0,
+    '@input-border-radius': 0,
+    '@card-border-radius': 0,
+    '@label-border-radius': 0,
+    '@global-border-width': 1,
+    '@global-border': '#0d0d0d'
   }
 };
 
-/**
- * Usage: toCollectionStructure(presetThemeVariables.elegant);
- */
 export const toCollectionStructure = (
   themeName: Exclude<(typeof PRESET_THEME_NAMES)[number], 'default'>
 ): ThemeVariablesCollection => {
   const preset = presetThemeVariables[themeName];
-  const collecton: ThemeVariablesCollection = {};
 
-  for (const [category, variables] of Object.entries(preset)) {
-    const c = category as ThemeVarCategory;
-    collecton[c] = [];
-
-    defaultVariables[c].forEach((v) => {
-      collecton[c].push({
-        ...v,
-        value: variables[v.id]!
-      });
-    });
-  }
-
-  return Object.keys(collecton).length > 0 ? collecton : defaultVariables;
+  return (Object.keys(defaultVariables) as ThemeVarCategory[]).reduce((state, category) => {
+    state[category] = defaultVariables[category].map((v) => ({
+      ...v,
+      value: preset[v.id] ?? v.value
+    }));
+    return state;
+  }, {} as ThemeVariablesCollection);
 };
