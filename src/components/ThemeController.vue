@@ -4,6 +4,7 @@ import { watch } from 'vue';
 import { toCamelCase } from '@/utils/formatter';
 import { downloadFile, generateLessTheme } from '@/utils/export';
 import { applyTheme, resetTheme, themeState } from '@/utils/theme-state';
+import { FONT_FAMILIES } from '@/utils/variables';
 
 const getRangeAttrs = (variable: ThemeVariable) => ({
   step: variable.step ?? 1,
@@ -40,11 +41,29 @@ watch(
             </span>
           </div>
 
+          <div v-if="variable.id === '@global-font-family'" class="uk-form-controls">
+            <select
+              class="uk-select"
+              :id="toCamelCase(variable.id)"
+              aria-label="Select Font"
+              v-model="variable.value"
+            >
+              <option v-for="ff in FONT_FAMILIES.global" :key="ff" :value="ff">{{ ff }}</option>
+            </select>
+          </div>
+
+          <div v-if="variable.id === '@base-heading-font-family'" class="uk-form-controls">
+            <select class="uk-select" aria-label="Select Font" v-model="variable.value">
+              <option v-for="ff in FONT_FAMILIES.heading" :key="ff" :value="ff">{{ ff }}</option>
+            </select>
+          </div>
+
           <div class="uk-form-controls uk-flex uk-flex-middle">
             <input
               v-if="variable.type === 'color'"
               type="color"
               class="uk-margin-small-right"
+              :name="variable.id.slice(1)"
               v-model="variable.value"
             />
 
@@ -52,13 +71,17 @@ watch(
               v-if="variable.type === 'number'"
               type="range"
               class="uk-range uk-margin-top"
+              :name="variable.id.slice(1)"
+              :id="toCamelCase(variable.id)"
               v-bind="getRangeAttrs(variable)"
               v-model="variable.value"
             />
 
             <input
-              v-if="variable.type !== 'number'"
+              v-if="variable.type !== 'number' && !variable.id.includes('font-family')"
               type="text"
+              :name="variable.id.slice(1)"
+              :id="toCamelCase(variable.id)"
               class="uk-input"
               v-model="variable.value"
             />

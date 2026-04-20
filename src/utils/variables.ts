@@ -2,10 +2,12 @@ import type { ThemeVariablesCollection } from './types';
 
 export const FONT_FAMILIES = {
   global: [
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    '"DM Sans", system-ui, sans-serif'
   ],
   heading: [
-    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    '"Cormorant Garamond", Georgia, serif'
   ]
 };
 
