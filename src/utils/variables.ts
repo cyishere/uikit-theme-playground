@@ -1,5 +1,14 @@
 import type { ThemeVariablesCollection } from './types';
 
+export const FONT_FAMILIES = {
+  global: [
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  ],
+  heading: [
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+  ]
+};
+
 export const defaultVariables: ThemeVariablesCollection = {
   Colors: [
     {
@@ -68,8 +77,13 @@ export const defaultVariables: ThemeVariablesCollection = {
       id: '@global-font-family',
       label: 'Font Family',
       type: 'text',
-      value:
-        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+      value: FONT_FAMILIES.global[0]!
+    },
+    {
+      id: '@base-heading-font-family',
+      label: 'Heading Font Family',
+      type: 'text',
+      value: FONT_FAMILIES.heading[0]!
     },
     {
       id: '@global-font-size',
