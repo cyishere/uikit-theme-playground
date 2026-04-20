@@ -1,5 +1,20 @@
 <script setup lang="ts">
-import { themeState } from '@/utils/theme-state';
+import { toCapitalized } from '@/utils/formatter';
+import { applyTheme, resetTheme, themeState } from '@/utils/theme-state';
+import { PRESET_THEME_NAMES, toCollectionStructure } from '@/utils/variables';
+
+const handleChangeTheme = (e: Event) => {
+  const target = e.target as HTMLSelectElement;
+  const themeName = target.value as (typeof PRESET_THEME_NAMES)[number];
+
+  if (themeName === 'default') {
+    resetTheme();
+  } else {
+    const collection = toCollectionStructure(themeName);
+    themeState.variablesCollection = structuredClone(collection);
+    applyTheme(true);
+  }
+};
 </script>
 
 <template>
@@ -32,10 +47,10 @@ import { themeState } from '@/utils/theme-state';
           <span>Try Theme:</span>
         </div>
         <div class="uk-navbar-item">
-          <select class="uk-select">
-            <option>Default</option>
-            <option>Minimal Mono</option>
-            <option>Colorful</option>
+          <select class="uk-select" @change="handleChangeTheme">
+            <option v-for="name in PRESET_THEME_NAMES" :key="name" :value="name">
+              {{ toCapitalized(name) }}
+            </option>
           </select>
         </div>
       </div>

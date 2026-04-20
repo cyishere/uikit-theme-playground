@@ -163,8 +163,10 @@ export const defaultVariables: ThemeVariablesCollection = {
   ]
 };
 
+export const PRESET_THEME_NAMES = ['default', 'elegant', 'playful', 'bold'] as const;
+
 export const presetThemeVariables: Record<
-  string,
+  Exclude<(typeof PRESET_THEME_NAMES)[number], 'default'>,
   Record<ThemeVarCategory, Record<string, ThemeVarValue>>
 > = {
   elegant: {
@@ -197,7 +199,7 @@ export const presetThemeVariables: Record<
       '@global-border': '#e8e4dc'
     }
   },
-  colorful: {
+  playful: {
     Colors: {
       '@global-primary-background': '#7165c8',
       '@global-secondary-background': '#f589a8',
@@ -257,4 +259,28 @@ export const presetThemeVariables: Record<
       '@global-border': '#0d0d0d'
     }
   }
+};
+
+/**
+ * Usage: toCollectionStructure(presetThemeVariables.elegant);
+ */
+export const toCollectionStructure = (
+  themeName: Exclude<(typeof PRESET_THEME_NAMES)[number], 'default'>
+): ThemeVariablesCollection => {
+  const preset = presetThemeVariables[themeName];
+  const collecton: ThemeVariablesCollection = {};
+
+  for (const [category, variables] of Object.entries(preset)) {
+    const c = category as ThemeVarCategory;
+    collecton[c] = [];
+
+    defaultVariables[c].forEach((v) => {
+      collecton[c].push({
+        ...v,
+        value: variables[v.id]!
+      });
+    });
+  }
+
+  return Object.keys(collecton).length > 0 ? collecton : defaultVariables;
 };

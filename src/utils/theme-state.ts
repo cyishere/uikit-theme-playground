@@ -89,7 +89,7 @@ export const applyTheme = async (force = false) => {
         const allVars = Object.values(themeState.variablesCollection).flat();
         const varsRecord = allVars.reduce(
           (curr, v) => {
-            curr[v.id] = v.unit ? `${v.value}${v.unit}` : v.value;
+            curr[v.id] = v.unit ? `${v.value}${v.unit}` : v.value.toString();
             return curr;
           },
           {} as Record<string, string>
