@@ -10,7 +10,7 @@
       </p>
 
       <div class="uk-width-2-3 uk-margin-auto">
-        <div class="uk-child-width-1-2@s uk-grid-medium uk-margin-large-top" uk-grid>
+        <div class="uk-child-width-1-2@s uk-grid-medium uk-grid-match uk-margin-large-top" uk-grid>
           <div>
             <div class="uk-card uk-card-default uk-card-large uk-card-body uk-text-left">
               <h3 class="uk-h2">Ship Faster with the Leading DevOps Platform</h3>

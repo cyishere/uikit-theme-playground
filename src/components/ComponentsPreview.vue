@@ -15,7 +15,8 @@ import DemoSection, { H3 } from './DemoSection.vue';
       <h3>Heading H3</h3>
       <p class="uk-text-lead">Lead paragraph text for introductory content.</p>
       <p>
-        Standard body text. <a href="#">This is a link</a>. <strong>This is bold text</strong>.
+        Standard body text <span class="uk-text-emphasis">with emphasis text</span>.
+        <a href="#">This is a link</a>. <strong>This is bold text</strong>.
         <span class="uk-text-muted">This is muted text</span>. <em>This is italic text</em>.
       </p>
       <p class="uk-text-meta">Meta text for descriptions or dates.</p>
