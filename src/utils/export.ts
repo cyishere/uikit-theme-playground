@@ -6,6 +6,7 @@ export const generateLessTheme = (variablesCollection: ThemeVariablesCollection)
   let content = `// UIkit Custom Theme - Generated on ${timestamp}\n`;
   content += `// UIkit Version: ${pkg.devDependencies.uikit}\n\n`;
 
+  content += `// TODO: please update the actual uikit.theme.less file path for your project\n\n`;
   content += `@import "uikit/uikit.theme.less";\n\n`;
   content += `// Custom Variables\n`;
 
