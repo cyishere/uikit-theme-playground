@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { applyTheme, resetTheme, themeState, updateThemeFromPreset } from '@/stores/theme';
 import { toCapitalized } from '@/utils/formatter';
-import { applyTheme, resetTheme, themeState, updateThemeFromPreset } from '@/utils/theme-state';
 import { PRESET_THEME_NAMES, toCollectionStructure } from '@/utils/variables';
 
 const handleChangeTheme = (e: Event) => {

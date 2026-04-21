@@ -1,6 +1,6 @@
+import type { ThemeVariablesCollection } from '@/utils/types';
 import { reactive, watch } from 'vue';
-import type { ThemeVariablesCollection } from './types';
-import { defaultVariables } from './variables';
+import { defaultVariables } from '@/utils/variables';
 
 const THEME_STORAGE_KEY = 'uikit-playground-theme';
 const SELECTED_THEME_KEY = 'uikit-playground-selected-theme';

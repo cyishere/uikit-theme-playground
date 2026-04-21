@@ -3,8 +3,8 @@ import type { ThemeVariable } from '@/utils/types';
 import { watch } from 'vue';
 import { toCamelCase } from '@/utils/formatter';
 import { downloadFile, generateLessTheme } from '@/utils/export';
-import { applyTheme, resetTheme, themeState } from '@/utils/theme-state';
 import { FONT_FAMILIES } from '@/utils/variables';
+import { applyTheme, resetTheme, themeState } from '@/stores/theme';
 
 const { idPrefix } = defineProps<{
   idPrefix: string;

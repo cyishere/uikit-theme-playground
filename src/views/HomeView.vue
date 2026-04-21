@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import PreviewCanvas from '@/components/PreviewCanvas.vue';
 import Sidebar from '@/components/SideBar.vue';
-import Toolbar from '@/components/ToolBar.vue';
+import Topbar from '@/components/TopBar.vue';
 import ThemeController from '@/components/ThemeController.vue';
-import { themeState } from '@/utils/theme-state';
+import { themeState } from '@/stores/theme';
 </script>
 
 <template>
@@ -12,9 +12,9 @@ import { themeState } from '@/utils/theme-state';
       <ThemeController id-prefix="sidebar" />
     </Sidebar>
     <main class="tp-main">
-      <Toolbar>
+      <Topbar>
         <ThemeController id-prefix="toolbar" />
-      </Toolbar>
+      </Topbar>
       <PreviewCanvas />
     </main>
   </div>

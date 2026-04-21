@@ -7,7 +7,7 @@ import Solution from '@/components/DemoPageComponents/SolutionSection.vue';
 import ChooseService from '@/components/DemoPageComponents/ChooseService.vue';
 import News from '@/components/DemoPageComponents/NewsSection.vue';
 import Footer from '@/components/DemoPageComponents/FooterSection.vue';
-import { themeState } from '@/utils/theme-state';
+import { themeState } from '@/stores/theme';
 </script>
 
 <template>
