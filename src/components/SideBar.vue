@@ -23,8 +23,15 @@ const toggleSidebar = () => {
 
     <h2 hidden>Theme Controller</h2>
 
-    <div class="uk-padding tp-controller-wrapper">
+    <div class="uk-padding tp-sidebar-container">
       <slot />
+
+      <hr class="uk-margin-large-top" />
+      <footer>
+        <p class="uk-text-center uk-text-muted">
+          Made by <a href="https://cyishere.dev" target="_blank" rel="noopener noreferrer">CY</a>
+        </p>
+      </footer>
     </div>
   </aside>
 </template>
@@ -42,7 +49,7 @@ const toggleSidebar = () => {
   &[data-expanded='true'] {
     --sidebar-width: 350px;
 
-    .tp-controller-wrapper {
+    .tp-sidebar-container {
       opacity: 1;
     }
   }
@@ -50,7 +57,7 @@ const toggleSidebar = () => {
   &[data-expanded='false'] {
     --sidebar-width: 60px;
 
-    .tp-controller-wrapper {
+    .tp-sidebar-container {
       opacity: 0;
       pointer-events: none;
     }
@@ -74,7 +81,7 @@ const toggleSidebar = () => {
   padding: 10px;
 }
 
-.tp-controller-wrapper {
+.tp-sidebar-container {
   --sidebar-top-height: 60px;
 
   margin-top: var(--sidebar-top-height);
