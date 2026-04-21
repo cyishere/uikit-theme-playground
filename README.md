@@ -33,6 +33,7 @@ Instead of using standard CSS variables, this project utilizes `less.modifyVars(
 
 - **Workflow:** When a variable changes, the `applyTheme` utility triggers a debounced update to the `less.js` compiler running in the browser.
 - **Deep Integration:** This allows us to tap into UIkit's core Less mixins and nested variables. By leveraging **UIkit Hooks** (e.g., `.hook-card()`, `.hook-form()`) in `public/theme.less`, the project injects custom "bridge variables" to control properties that aren't directly exposed as variables by the framework.
+- **Vendored Assets:** Although `less` and `uikit` are included in `devDependencies` for version tracking, the actual `less.js` compiler and the UIkit Less source files are vendored in the `public/` directory (`public/less.js` and `public/uikit/`). This ensures that the browser-side compiler can access all necessary source files during real-time compilation without complex build-time resolution.
 
 ### 3. Cross-Tab Persistence & Sync
 
