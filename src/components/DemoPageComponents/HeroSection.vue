@@ -18,11 +18,18 @@ import PlayIcon from './Icons/PlayIcon.vue';
       </div>
 
       <div class="uk-inline">
-        <img src="/images/dark.jpg" width="1800" height="1200" alt="" />
+        <img
+          src="/images/dark.jpg"
+          width="1800"
+          height="1200"
+          alt="Cover of DevStack Introduction Video"
+        />
         <div class="uk-position-center">
-          <button class="uk-icon-button uk-background-primary uk-light">
-            <span hidden>Play video</span>
-            <PlayIcon width="36" height="36" />
+          <button
+            class="uk-icon-button uk-background-primary uk-light"
+            aria-label="Play introduction video"
+          >
+            <PlayIcon width="36" height="36" aria-hidden="true" />
           </button>
         </div>
       </div>

@@ -26,6 +26,7 @@ const handleChangeTheme = (e: Event) => {
           class="uk-navbar-item uk-navbar-toggle tp-show-only-small"
           uk-navbar-toggle-icon
           uk-toggle="target: #mobileMenu"
+          aria-label="Open mobile menu"
         ></button>
         <div class="uk-navbar-item tp-show-only-small">
           <a href="/" class="uk-logo">UKTP</a>
@@ -33,21 +34,28 @@ const handleChangeTheme = (e: Event) => {
         <div class="uk-navbar-item tp-hidden-small">
           <a href="/" class="uk-logo">UIkit Theme Playgroud</a>
         </div>
-        <div v-if="themeState.compiling" class="uk-navbar-item">
-          <span class="uk-text-danger uk-text-italic">Compiling...</span>
-        </div>
-        <div v-else class="uk-navbar-item">
-          <span class="uk-text-success">●</span>
-          <span>Synced</span>
+        <div aria-live="polite" class="uk-navbar-item">
+          <div v-if="themeState.compiling">
+            <span class="uk-text-danger uk-text-italic">Compiling...</span>
+          </div>
+          <div v-else>
+            <span class="uk-text-success" aria-hidden="true">●</span>
+            <span class="uk-margin-small-left">Synced</span>
+          </div>
         </div>
       </div>
 
       <div class="uk-navbar-right">
         <div class="uk-navbar-item">
-          <span>Try Theme:</span>
+          <label for="themePresetSelect">Try Theme:</label>
         </div>
         <div class="uk-navbar-item">
-          <select class="uk-select" :value="themeState.selectedTheme" @change="handleChangeTheme">
+          <select
+            id="themePresetSelect"
+            class="uk-select"
+            :value="themeState.selectedTheme"
+            @change="handleChangeTheme"
+          >
             <option v-for="name in PRESET_THEME_NAMES" :key="name" :value="name">
               {{ toCapitalized(name) }}
             </option>
@@ -60,6 +68,7 @@ const handleChangeTheme = (e: Event) => {
           <a
             href="https://github.com/cyishere/uikit-theme-playground"
             target="_blank"
+            rel="noopener noreferrer"
             class="uk-icon-link"
             uk-icon="github"
           >

@@ -19,42 +19,45 @@ import PlusIcon from './Icons/PlusIcon.vue';
       <div class="uk-child-width-expand@s uk-text-center uk-margin-xlarge-top" uk-grid>
         <div>
           <div class="uk-inline">
-            <BigClip />
+            <BigClip aria-hidden="true" />
             <PlusIcon
               class-name="uk-text-primary uk-position-bottom-right"
               width="120"
               height="120"
+              aria-hidden="true"
             />
           </div>
           <h3>Integrate</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          <a href="">Learn More <span uk-icon="arrow-right"></span></a>
+          <a href="">Learn More <span uk-icon="arrow-right" aria-hidden="true"></span></a>
         </div>
         <div>
           <div class="uk-inline">
-            <BigBox />
+            <BigBox aria-hidden="true" />
             <InfinityIcon
               class-name="uk-text-primary uk-position-bottom-right"
               width="120"
               height="120"
+              aria-hidden="true"
             />
           </div>
           <h3>Automate</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          <a href="">Learn More <span uk-icon="arrow-right"></span></a>
+          <a href="">Learn More <span uk-icon="arrow-right" aria-hidden="true"></span></a>
         </div>
         <div>
           <div class="uk-inline">
-            <BigCog />
+            <BigCog aria-hidden="true" />
             <BulbIcon
               class-name="uk-text-primary uk-position-bottom-right"
               width="120"
               height="120"
+              aria-hidden="true"
             />
           </div>
           <h3>Innovate</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          <a href="">Learn More <span uk-icon="arrow-right"></span></a>
+          <a href="">Learn More <span uk-icon="arrow-right" aria-hidden="true"></span></a>
         </div>
       </div>
     </div>

@@ -92,7 +92,7 @@ const LINKS = [
 </script>
 
 <template>
-  <footer class="uk-section">
+  <footer class="uk-section" aria-label="Demo Footer">
     <div class="uk-padding uk-padding-remove-verical">
       <div class="uk-flex uk-flex-between uk-flex-middle">
         <div>

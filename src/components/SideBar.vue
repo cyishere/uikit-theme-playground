@@ -16,6 +16,8 @@ const toggleSidebar = () => {
         class="uk-navbar-toggle tp-sidebar-toggle"
         @click="toggleSidebar"
         uk-navbar-toggle-icon
+        :aria-expanded="sidebarExpanded"
+        aria-label="Toggle sidebar"
       ></button>
     </div>
 

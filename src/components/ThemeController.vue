@@ -10,9 +10,10 @@ const { idPrefix } = defineProps<{
   idPrefix: string;
 }>();
 
-const getUniqueId = (id: string) => {
+const getUniqueId = (id: string, suffix = '') => {
   const camelId = toCamelCase(id);
-  return idPrefix ? `${idPrefix}-${camelId}` : camelId;
+  const baseId = idPrefix ? `${idPrefix}-${camelId}` : camelId;
+  return suffix ? `${baseId}-${suffix}` : baseId;
 };
 
 const getRangeAttrs = (variable: ThemeVariable) => ({
@@ -44,8 +45,10 @@ watch(
       <div class="uk-form-stacked">
         <div v-for="variable in variables" :key="variable.id" class="uk-margin-bottom">
           <div class="uk-flex uk-flex-between uk-flex-middle">
-            <label class="uk-form-label" :for="getUniqueId(variable.id)">{{ variable.id }}</label>
-            <span v-if="variable.type === 'number'" class="uk-text-success">
+            <label class="uk-form-label" :for="getUniqueId(variable.id, 'input')">
+              {{ variable.id }}
+            </label>
+            <span v-if="variable.type === 'number'" class="uk-text-success" aria-hidden="true">
               {{ variable.value }}{{ variable.unit }}
             </span>
           </div>
@@ -53,8 +56,8 @@ watch(
           <div v-if="variable.id === '@global-font-family'" class="uk-form-controls">
             <select
               class="uk-select"
-              :id="getUniqueId(variable.id)"
-              aria-label="Select Font"
+              :id="getUniqueId(variable.id, 'input')"
+              aria-label="Select Global Font"
               v-model="variable.value"
             >
               <option v-for="ff in FONT_FAMILIES.global" :key="ff" :value="ff">{{ ff }}</option>
@@ -64,8 +67,8 @@ watch(
           <div v-if="variable.id === '@base-heading-font-family'" class="uk-form-controls">
             <select
               class="uk-select"
-              :id="getUniqueId(variable.id)"
-              aria-label="Select Font"
+              :id="getUniqueId(variable.id, 'input')"
+              aria-label="Select Heading Font"
               v-model="variable.value"
             >
               <option v-for="ff in FONT_FAMILIES.heading" :key="ff" :value="ff">{{ ff }}</option>
@@ -77,6 +80,8 @@ watch(
               v-if="variable.type === 'color'"
               type="color"
               class="uk-margin-small-right"
+              :id="getUniqueId(variable.id, 'color-picker')"
+              :aria-label="`Pick ${variable.id} color`"
               :name="variable.id.slice(1)"
               v-model="variable.value"
             />
@@ -86,7 +91,7 @@ watch(
               type="range"
               class="uk-range uk-margin-top"
               :name="variable.id.slice(1)"
-              :id="getUniqueId(variable.id)"
+              :id="getUniqueId(variable.id, 'input')"
               v-bind="getRangeAttrs(variable)"
               v-model="variable.value"
             />
@@ -95,7 +100,7 @@ watch(
               v-if="variable.type !== 'number' && !variable.id.includes('font-family')"
               type="text"
               :name="variable.id.slice(1)"
-              :id="getUniqueId(variable.id)"
+              :id="getUniqueId(variable.id, 'input')"
               class="uk-input"
               v-model="variable.value"
             />
@@ -109,12 +114,12 @@ watch(
       class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
       @click="handleExport"
     >
-      <span uk-icon="download" class="uk-margin-small-right"></span>
+      <span uk-icon="download" class="uk-margin-small-right" aria-hidden="true"></span>
       Download
     </button>
 
     <button type="button" class="uk-button uk-button-danger uk-width-1-1" @click="resetTheme">
-      <span uk-icon="trash" class="uk-margin-small-right"></span>
+      <span uk-icon="trash" class="uk-margin-small-right" aria-hidden="true"></span>
       Clear Workspace
     </button>
   </div>

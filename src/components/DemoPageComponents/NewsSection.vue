@@ -33,7 +33,7 @@ const POSTS: Post[] = [
         sit amet.
       </p>
       <p>
-        <a href="">Visit Our Blog <span uk-icon="arrow-right"></span></a>
+        <a href="">Visit Our Blog <span uk-icon="arrow-right" aria-hidden="true"></span></a>
       </p>
 
       <div

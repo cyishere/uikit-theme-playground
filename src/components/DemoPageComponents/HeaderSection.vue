@@ -3,9 +3,17 @@ import Logo from './PageLogo.vue';
 </script>
 
 <template>
-  <nav class="tp-navbar uk-padding uk-padding-remove-top uk-padding-remove-bottom" uk-navbar>
+  <nav
+    class="tp-navbar uk-padding uk-padding-remove-top uk-padding-remove-bottom"
+    uk-navbar
+    aria-label="Demo Navigation"
+  >
     <div class="uk-navbar-left">
-      <button class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon></button>
+      <button
+        class="uk-navbar-toggle uk-hidden@m"
+        uk-navbar-toggle-icon
+        aria-label="Open demo mobile menu"
+      ></button>
       <div class="uk-navbar-item tp-hidden_m">
         <Logo />
       </div>
