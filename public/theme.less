@@ -1,72 +1,9 @@
 @import 'uikit/uikit.theme.less';
 
-// Fonts
-@font-face {
-	font-family: 'Cormorant Garamond';
-	src: url('/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf')
-		format('truetype-variations');
-	font-weight: 300 700;
-	font-style: normal;
-}
+// Import Custom Fonts
+@import 'fonts.less';
 
-@font-face {
-	font-family: 'Cormorant Garamond';
-	src: url('/fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf')
-		format('truetype-variations');
-	font-weight: 300 700;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'DM Sans';
-	src: url('/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype-variations');
-	font-weight: 100 1000;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'DM Sans';
-	src: url('/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
-	font-weight: 100 1000;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Nunito';
-	src: url('/fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype-variations');
-	font-weight: 200 900;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Nunito';
-	src: url('/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf') format('truetype-variations');
-	font-weight: 200 900;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Inter';
-	src: url('/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations');
-	font-weight: 100 900;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Inter';
-	src: url('/fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
-	font-weight: 100 900;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Syne';
-	src: url('/fonts/Syne/Syne-VariableFont_wght.ttf') format('truetype-variations');
-	font-weight: 400 800;
-	font-style: normal;
-}
-
-// Overrides
+// Overrides For the Playground
 @offcanvas-bar-background: #fff;
 @offcanvas-bar-color-mode: dark;
 
@@ -75,7 +12,7 @@
 @input-border-radius: 0;
 @card-border-radius: 0;
 
-// Apply variables via UIkit Hooks
+// Apply Variables via UIkit Hooks
 .hook-button() {
 	border-radius: @button-border-radius;
 }
@@ -90,6 +27,7 @@
 	overflow: hidden;
 }
 
+// Dimming/Disable the UI while compiling variables changes
 .tp-wrapper[data-compiling='true'] {
 	opacity: 0.5;
 
