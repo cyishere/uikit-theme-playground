@@ -56,6 +56,16 @@ const handleChangeTheme = (e: Event) => {
             </option>
           </select>
         </div>
+        <div class="uk-navbar-item">
+          <a
+            href="https://github.com/cyishere/uikit-theme-playground"
+            target="_blank"
+            class="uk-icon-link"
+            uk-icon="github"
+          >
+            <span hidden>View on GitHub</span>
+          </a>
+        </div>
       </div>
     </header>
   </div>
