@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import DemoPageView from '@/views/DemoPageView.vue';
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>
@@ -18,6 +16,27 @@ import DemoPageView from '@/views/DemoPageView.vue';
       <hr />
     </div>
 
-    <DemoPageView />
+    <div class="uk-padding uk-padding-remove-top tp-preview-frame">
+      <figure class="uk-background-muted">
+        <iframe
+          class="uk-width-1-1 uk-margin-auto uk-resize"
+          src="/demo-page"
+        ></iframe>
+      </figure>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.tp-preview-frame {
+  figure {
+    border: 1px solid #e5e5e5;
+  }
+
+  iframe {
+    display: block;
+    height: 65svh;
+    overscroll-behavior: contain;
+  }
+}
+</style>
