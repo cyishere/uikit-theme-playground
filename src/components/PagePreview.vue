@@ -18,10 +18,7 @@
 
     <div class="uk-padding uk-padding-remove-top tp-preview-frame">
       <figure class="uk-background-muted">
-        <iframe
-          class="uk-width-1-1 uk-margin-auto uk-resize"
-          src="/demo-page"
-        ></iframe>
+        <iframe class="uk-width-1-1 uk-margin-auto uk-resize" src="/demo-page"></iframe>
       </figure>
     </div>
   </div>
