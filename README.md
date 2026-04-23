@@ -4,6 +4,8 @@ An interactive, real-time theme editor for the [UIkit](https://getuikit.com) fro
 
 ## Overview
 
+**This is a sample project built for my professional portfolio.** It serves as a technical demonstration of real-time browser-side compilation, cross-tab state synchronization, and UIkit customization.
+
 The UIkit Theme Playground allows developers to manipulate core UIkit variables and see changes reflected instantly across a comprehensive component library. It bridges the gap between static design and implementation by providing a live sandbox for design system exploration.
 
 ### Key Features
@@ -88,4 +90,4 @@ pnpm build
 
 ## License
 
-This project is for demonstration purposes. UIkit is property of [YOOtheme](https://yootheme.com/uikit).
+This project is a portfolio piece and is for demonstration purposes only. UIkit is property of [YOOtheme](https://yootheme.com/uikit).
